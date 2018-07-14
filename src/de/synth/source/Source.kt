@@ -3,7 +3,7 @@ package de.synth.source
 /**
  * The interface for a json source. It can be a file, real objects or anything else.
  */
-interface Source {
+interface Source : Iterable<String> {
     /**
      * Finds the value for the given key. This method should only be used, when there is really a value for the given
      * key. Otherwise use [has].
