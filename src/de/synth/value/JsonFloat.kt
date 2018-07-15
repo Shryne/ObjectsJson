@@ -3,12 +3,16 @@ package de.synth.value
 /**
  * A class for the conversion of a json number to a float.
  */
-class JsonFloat : JsonValue<Float> {
-    override fun asObject(): Float {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+class JsonFloat(private val stringRepresentation: String) : JsonValue<Float> {
+    override fun asObject(): Float =
+            if (stringRepresentation.matches(Regex("[0-9]"))) {
+                throw NumberFormatException("The number must be a float, but is an int ($stringRepresentation)")
+            } else {
+                java.lang.Float.parseFloat(stringRepresentation)
+            }
 
-    override fun isValid(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun isValid(): Boolean =
+            stringRepresentation.matches(
+                    Regex("[0-9]+.[0-9]+")
+            )
 }
