@@ -7,6 +7,8 @@ import de.synth.value.JsonValue
 
 /**
  * Represents a json object. It can be used to either for output and input of a json object.
+ *
+ * This class is immutable and thread-safe.
  */
 // TODO: Can a JsonObject be removed, because the source is doing everything?
 class JsonObject(private val source: Source) : Source, Iterable<String>, Exportable {

@@ -2,6 +2,8 @@ package de.synth.value
 
 /**
  * A class for the conversion of a json number to a float.
+ *
+ * This class is immutable and thread-safe.
  */
 class JsonFloat(private val stringRepresentation: String) : JsonValue<Float> {
     override fun asObject(): Float =
@@ -15,4 +17,6 @@ class JsonFloat(private val stringRepresentation: String) : JsonValue<Float> {
             stringRepresentation.matches(
                     Regex("[0-9]+.[0-9]+")
             )
+
+    override fun toString() = "${javaClass.simpleName}($stringRepresentation)"
 }

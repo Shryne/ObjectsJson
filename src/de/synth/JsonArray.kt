@@ -2,8 +2,10 @@ package de.synth
 
 /**
  * A class for the conversion of a json array into a json object.
+ *
+ * This class is immutable and thread-safe.
  */
-class JsonArray(stringRepresentation: String) : Iterable<String> {
+class JsonArray(private val stringRepresentation: String) : Iterable<String> {
     fun isValid(): Boolean {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

@@ -2,6 +2,8 @@ package de.synth.source
 
 /**
  * A file as a source of json objects.
+ *
+ * This class is immutable and thread-safe.
  */
 class FileSource : Source {
     override fun get(key: String): String {

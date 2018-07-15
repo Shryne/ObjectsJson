@@ -2,7 +2,8 @@ package de.synth.value
 
 /**
  * A class for the conversion of a json boolean into a boolean object.
- * <p>This class is immutable and thread-safe</p>
+ *
+ * This class is immutable and thread-safe.
  */
 class JsonBoolean(private val stringRepresentation: String) : JsonValue<Boolean> {
     private companion object {
@@ -25,4 +26,6 @@ class JsonBoolean(private val stringRepresentation: String) : JsonValue<Boolean>
 
     override fun isValid(): Boolean =
         stringRepresentation == TRUE_VALUE || stringRepresentation == FALSE_VALUE
+
+    override fun toString() = "${javaClass.simpleName}($stringRepresentation)"
 }
