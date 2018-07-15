@@ -7,7 +7,7 @@ import kotlin.test.assertTrue
 
 class JsonBooleanTest {
     @Test
-    fun falseJavaType() {
+    fun falseAsObject() {
         assertEquals(
                 false,
                 JsonBoolean("false").asObject()
@@ -15,7 +15,7 @@ class JsonBooleanTest {
     }
 
     @Test
-    fun trueJavaType() {
+    fun trueAsObject() {
         assertEquals(
                 true,
                 JsonBoolean("true").asObject()
@@ -23,7 +23,7 @@ class JsonBooleanTest {
     }
 
     @Test(expected = IllegalStateException::class)
-    fun failJavaType() {
+    fun failAsObject() {
         JsonBoolean("FALSE").asObject()
     }
 

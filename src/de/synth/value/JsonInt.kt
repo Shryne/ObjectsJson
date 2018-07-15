@@ -3,14 +3,15 @@ package de.synth.value
 /**
  * A class for the conversion of a json int into a int object.
  */
-// TODO: What about float, binary, ...?
-class JsonInt(private val strinRepresentation: String) : JsonValue<Int> {
-    override fun asObject(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+class JsonInt(private val stringRepresentation: String) : JsonValue<Int> {
+    /**
+     * @throws NumberFormatException if the number couldn't be parsed.
+     */
+    override fun asObject(): Int =
+            Integer.parseInt(stringRepresentation)
 
-    override fun isValid(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
+    override fun isValid(): Boolean =
+            stringRepresentation.matches(
+                    Regex("[0-9]+")
+            )
 }
