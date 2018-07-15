@@ -6,9 +6,9 @@ package de.synth.value
  */
 interface JsonValue<T> {
     /**
-     * @return the Java type of this json value.
+     * @return the object of this json value.
      */
-    fun javaType(): T
+    fun asObject(): T
 
     /**
      * Checks whether the json value is valid (correct parsable).

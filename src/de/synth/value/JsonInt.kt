@@ -5,7 +5,7 @@ package de.synth.value
  */
 // TODO: What about float, binary, ...?
 class JsonInt(private val strinRepresentation: String) : JsonValue<Int> {
-    override fun javaType(): Int {
+    override fun asObject(): Int {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

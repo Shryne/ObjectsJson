@@ -10,7 +10,7 @@ class JsonBooleanTest {
     fun falseJavaType() {
         assertEquals(
                 false,
-                JsonBoolean("false").javaType()
+                JsonBoolean("false").asObject()
         )
     }
 
@@ -18,13 +18,13 @@ class JsonBooleanTest {
     fun trueJavaType() {
         assertEquals(
                 true,
-                JsonBoolean("true").javaType()
+                JsonBoolean("true").asObject()
         )
     }
 
     @Test(expected = IllegalStateException::class)
     fun failJavaType() {
-        JsonBoolean("FALSE").javaType()
+        JsonBoolean("FALSE").asObject()
     }
 
     @Test

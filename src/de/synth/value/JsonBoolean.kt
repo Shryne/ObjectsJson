@@ -13,7 +13,7 @@ class JsonBoolean(private val stringRepresentation: String) : JsonValue<Boolean>
     /**
      * @throws IllegalStateException if the boolean couldn't be parsed.
      */
-    override fun javaType(): Boolean =
+    override fun asObject(): Boolean =
             when (stringRepresentation) {
                 TRUE_VALUE -> true
                 FALSE_VALUE -> false
