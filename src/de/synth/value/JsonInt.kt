@@ -3,6 +3,7 @@ package de.synth.value
 /**
  * A class for the conversion of a json int into a int object.
  */
+// TODO: What about float, binary, ...?
 class JsonInt(private val strinRepresentation: String) : JsonValue<Int> {
     override fun javaType(): Int {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
