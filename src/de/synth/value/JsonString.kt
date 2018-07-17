@@ -5,14 +5,16 @@ package de.synth.value
  *
  * This class is immutable and thread-safe.
  */
+// TODO: Check if all characters are supported in the json specification
+// TODO: What about line breaks?
 class JsonString(private val stringRepresentation: String) : JsonValue<String> {
-    override fun asObject(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun asObject(): String = stringRepresentation
 
-    override fun isValid(): Boolean {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    /**
+     * The string is valid, if it starts and ends with a " and contains something in between.
+     */
+    override fun isValid(): Boolean =
+            stringRepresentation.startsWith("\"") && stringRepresentation.endsWith("\"")
 
     override fun toString() = "${javaClass.simpleName}($stringRepresentation)"
 }
