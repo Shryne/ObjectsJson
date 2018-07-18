@@ -13,15 +13,5 @@ class ObjectSource(private val map: Map<String, JsonValue<*>>) : Source {
     override fun get(key: String) = map[key]!!.toString()
     override fun has(key: String) = key in map
 
-    override fun iterator(): Iterator<String> =
-            object : Iterator<String> {
-                override fun hasNext(): Boolean {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun next(): String {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-            }
+    override fun iterator(): Iterator<String> = map.values.map { it.toString() }.iterator()
 }
