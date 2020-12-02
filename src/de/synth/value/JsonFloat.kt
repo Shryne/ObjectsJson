@@ -19,5 +19,8 @@ class JsonFloat(private val stringRepresentation: String) : JsonValue<Float> {
             Regex("[0-9]+.[0-9]+")
         )
 
+    override val json: String
+        get() = TODO("Not yet implemented")
+
     override fun toString() = "${javaClass.simpleName}($stringRepresentation)"
 }

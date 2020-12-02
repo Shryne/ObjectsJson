@@ -17,5 +17,8 @@ class JsonString(private val stringRepresentation: String) : JsonValue<String> {
     override val isValid: Boolean
         get() = stringRepresentation.startsWith("\"") && stringRepresentation.endsWith("\"")
 
+    override val json: String
+        get() = TODO("Not yet implemented")
+
     override fun toString() = "${javaClass.simpleName}($stringRepresentation)"
 }

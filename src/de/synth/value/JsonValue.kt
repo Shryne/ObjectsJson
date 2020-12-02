@@ -11,6 +11,11 @@ interface JsonValue<T> {
     val value: T
 
     /**
+     * The json version of the value.
+     */
+    val json: String
+
+    /**
      * Whether the json value is valid (correctly parsable).
      */
     val isValid: Boolean

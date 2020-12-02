@@ -25,6 +25,9 @@ class JsonBoolean(private val stringRepresentation: String) : JsonValue<Boolean>
             )
         }
 
+    override val json: String
+        get() = TODO("Not yet implemented")
+
     override val isValid: Boolean
         get() = stringRepresentation == TRUE_VALUE ||
             stringRepresentation == FALSE_VALUE

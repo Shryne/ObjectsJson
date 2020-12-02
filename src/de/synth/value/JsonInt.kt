@@ -18,5 +18,8 @@ class JsonInt(private val stringRepresentation: String) : JsonValue<Int> {
             Regex("[0-9]+")
         )
 
+    override val json: String
+        get() = TODO("Not yet implemented")
+
     override fun toString() = "${javaClass.simpleName}($stringRepresentation)"
 }
