@@ -9,48 +9,48 @@ class JsonFloatTest {
     @Test
     fun someNumberAsObject() {
         assertEquals(
-                0.0.toFloat(),
-                JsonFloat("0.0").asObject()
+            0.0.toFloat(),
+            JsonFloat("0.0").value
         )
     }
 
     @Test(expected = NumberFormatException::class)
     fun intFailAsObject() {
-        JsonFloat("1").asObject()
+        JsonFloat("1").value
     }
 
     @Test(expected = NumberFormatException::class)
     fun characterFailAsObject() {
-        JsonFloat("sda").asObject()
+        JsonFloat("sda").value
     }
 
     @Test
     fun intIsValid() {
         assertFalse(
-                JsonFloat("5").isValid()
+            JsonFloat("5").isValid()
         )
     }
 
     @Test
     fun simpleFloatIsValid() {
         assertTrue(
-                JsonFloat("1.6").isValid()
+            JsonFloat("1.6").isValid()
         )
     }
 
     @Test
     fun longFloatIsValid() {
         assertTrue(
-                JsonFloat("438.2309392").isValid()
+            JsonFloat("438.2309392").isValid()
         )
     }
 
     @Test
     fun multiplePointsIsValid() {
         assertFalse(
-                JsonFloat(
-                        "0.043.42"
-                ).isValid()
+            JsonFloat(
+                "0.043.42"
+            ).isValid()
         )
     }
 }

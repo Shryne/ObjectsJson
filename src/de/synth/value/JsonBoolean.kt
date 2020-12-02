@@ -1,7 +1,8 @@
 package de.synth.value
 
 /**
- * A class for the conversion of a json boolean into a boolean object.
+ * A boolean coming from or going to json. This means, it can represent itself
+ * as a json and as a Boolean.
  *
  * This class is immutable and thread-safe.
  */
@@ -14,8 +15,8 @@ class JsonBoolean(private val stringRepresentation: String) : JsonValue<Boolean>
     /**
      * @throws IllegalStateException if the boolean couldn't be parsed.
      */
-    override fun asObject(): Boolean =
-        when (stringRepresentation) {
+    override val value: Boolean
+        get() = when (stringRepresentation) {
             TRUE_VALUE -> true
             FALSE_VALUE -> false
             else -> throw IllegalStateException(

@@ -6,12 +6,13 @@ package de.synth.value
  * This class is immutable and thread-safe.
  */
 class JsonFloat(private val stringRepresentation: String) : JsonValue<Float> {
-    override fun asObject(): Float =
-        if (stringRepresentation.matches(Regex("[0-9]"))) {
-            throw NumberFormatException("The number must be a float, but is an int ($stringRepresentation)")
-        } else {
-            java.lang.Float.parseFloat(stringRepresentation)
-        }
+    override val value: Float
+        get() =
+            if (stringRepresentation.matches(Regex("[0-9]"))) {
+                throw NumberFormatException("The number must be a float, but is an int ($stringRepresentation)")
+            } else {
+                java.lang.Float.parseFloat(stringRepresentation)
+            }
 
     override fun isValid(): Boolean =
         stringRepresentation.matches(

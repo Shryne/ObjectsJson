@@ -10,8 +10,8 @@ class JsonInt(private val stringRepresentation: String) : JsonValue<Int> {
     /**
      * @throws NumberFormatException if the number couldn't be parsed.
      */
-    override fun asObject(): Int =
-        Integer.parseInt(stringRepresentation)
+    override val value: Int
+        get() = Integer.parseInt(stringRepresentation)
 
     override fun isValid(): Boolean =
         stringRepresentation.matches(

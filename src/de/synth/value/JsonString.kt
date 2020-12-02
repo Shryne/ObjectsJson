@@ -8,7 +8,8 @@ package de.synth.value
 // TODO: Check if all characters are supported in the json specification
 // TODO: What about line breaks?
 class JsonString(private val stringRepresentation: String) : JsonValue<String> {
-    override fun asObject(): String = stringRepresentation
+    override val value: String
+        get() = stringRepresentation
 
     /**
      * The string is valid, if it starts and ends with a " and contains something in between.

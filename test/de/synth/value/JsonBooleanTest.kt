@@ -9,22 +9,22 @@ class JsonBooleanTest {
     @Test
     fun falseAsObject() {
         assertEquals(
-                false,
-                JsonBoolean("false").asObject()
+            false,
+            JsonBoolean("false").value
         )
     }
 
     @Test
     fun trueAsObject() {
         assertEquals(
-                true,
-                JsonBoolean("true").asObject()
+            true,
+            JsonBoolean("true").value
         )
     }
 
     @Test(expected = IllegalStateException::class)
     fun failAsObject() {
-        JsonBoolean("FALSE").asObject()
+        JsonBoolean("FALSE").value
     }
 
     @Test

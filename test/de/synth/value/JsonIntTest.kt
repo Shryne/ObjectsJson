@@ -10,26 +10,26 @@ class JsonIntTest {
     fun allNumberAsObject() {
         (0..9).forEach {
             assertEquals(
-                    it,
-                    JsonInt(it.toString()).asObject(),
-                    "Failed on number $it"
+                it,
+                JsonInt(it.toString()).value,
+                "Failed on number $it"
             )
         }
     }
 
     @Test(expected = NumberFormatException::class)
     fun failAsObject() {
-        JsonInt("ds").asObject()
+        JsonInt("ds").value
     }
 
     @Test
     fun bigNumberAsObject() {
         13302.apply {
             assertEquals(
-                    this,
-                    JsonInt(
-                            this.toString()
-                    ).asObject()
+                this,
+                JsonInt(
+                    this.toString()
+                ).value
             )
         }
     }
@@ -38,8 +38,8 @@ class JsonIntTest {
     fun allIsValid() {
         (0..9).forEach {
             assertTrue(
-                    JsonInt(it.toString()).isValid(),
-                    "Failed on number $it"
+                JsonInt(it.toString()).isValid(),
+                "Failed on number $it"
             )
         }
     }
@@ -48,9 +48,9 @@ class JsonIntTest {
     fun bigNumberIsValid() {
         23843.apply {
             assertTrue(
-                    JsonInt(
-                            this.toString()
-                    ).isValid()
+                JsonInt(
+                    this.toString()
+                ).isValid()
             )
         }
     }
@@ -58,27 +58,27 @@ class JsonIntTest {
     @Test
     fun emptyNotIsValid() {
         assertFalse(
-                JsonInt(
-                        ""
-                ).isValid()
+            JsonInt(
+                ""
+            ).isValid()
         )
     }
 
     @Test
     fun middleCharacterNotIsValid() {
         assertFalse(
-                JsonInt(
-                        "3123d329"
-                ).isValid()
+            JsonInt(
+                "3123d329"
+            ).isValid()
         )
     }
 
     @Test
     fun floatNotIsValid() {
         assertFalse(
-                JsonInt(
-                        "3.2"
-                ).isValid()
+            JsonInt(
+                "3.2"
+            ).isValid()
         )
     }
 }
