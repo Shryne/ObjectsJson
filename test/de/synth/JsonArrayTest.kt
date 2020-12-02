@@ -9,21 +9,21 @@ class JsonArrayTest {
     @Test
     fun emptyIsValid() {
         assertTrue(
-                JsonArray("[]").isValid()
+            JsonArray("[]").isValid()
         )
     }
 
     @Test
     fun oneElementIsValid() {
         assertTrue(
-                JsonArray("[4]").isValid()
+            JsonArray("[4]").isValid()
         )
     }
 
     @Test
     fun twoElementsIsValid() {
         assertTrue(
-                JsonArray("[2, 6]").isValid()
+            JsonArray("[2, 6]").isValid()
         )
     }
 
@@ -35,7 +35,7 @@ class JsonArrayTest {
     @Test
     fun emptyIterator() {
         assertFalse(
-                JsonArray("[]").iterator().hasNext()
+            JsonArray("[]").iterator().hasNext()
         )
     }
 
@@ -62,8 +62,11 @@ class JsonArrayTest {
     @Test
     fun multipleElementsIterator() {
         assertEquals(
-                listOf("\"a\"", "ba", "44", "null", "das"),
-                JsonArray("[\"a\", ba, 44, null, das]").iterator().asSequence().toCollection(mutableListOf())
+            listOf("\"a\"", "ba", "44", "null", "das"),
+            JsonArray("[\"a\", ba, 44, null, das]")
+                .iterator()
+                .asSequence()
+                .toCollection(mutableListOf())
         )
     }
 }

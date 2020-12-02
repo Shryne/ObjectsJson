@@ -15,14 +15,14 @@ class JsonBoolean(private val stringRepresentation: String) : JsonValue<Boolean>
      * @throws IllegalStateException if the boolean couldn't be parsed.
      */
     override fun asObject(): Boolean =
-            when (stringRepresentation) {
-                TRUE_VALUE -> true
-                FALSE_VALUE -> false
-                else -> throw IllegalStateException(
-                        "Failed to parse the string to a boolean. " +
-                                "It should've been true or false, but is: $stringRepresentation"
-                )
-            }
+        when (stringRepresentation) {
+            TRUE_VALUE -> true
+            FALSE_VALUE -> false
+            else -> throw IllegalStateException(
+                "Failed to parse the string to a boolean. " +
+                    "It should've been true or false, but is: $stringRepresentation"
+            )
+        }
 
     override fun isValid(): Boolean =
         stringRepresentation == TRUE_VALUE || stringRepresentation == FALSE_VALUE

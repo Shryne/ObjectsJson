@@ -7,27 +7,27 @@ package de.synth
  */
 class JsonArray(private val stringRepresentation: String) : Iterable<String> {
     override fun iterator(): Iterator<String> =
-            object : Iterator<String> {
-                private var string: String = stringRepresentation.substring(1, stringRepresentation.length - 1)
+        object : Iterator<String> {
+            private var string: String = stringRepresentation.substring(1, stringRepresentation.length - 1)
 
-                override fun hasNext(): Boolean = string.any { it != ' ' }
+            override fun hasNext(): Boolean = string.any { it != ' ' }
 
-                override fun next(): String {
-                    if (!hasNext()) {
-                        throw NoSuchFieldException(
-                                "The array has no fields anymore. Array: $stringRepresentation"
-                        )
-                    }
-                    val end = string.indexOfUnbordered('"') { it == ',' }
-                    val result = string
-                            .substring(
-                                    string.indexOfFirst { it != ' ' },
-                                    if (end == -1) string.length else end
-                            )
-                    string = if (end == -1) "" else string.substring(end + 1)
-                    return result
+            override fun next(): String {
+                if (!hasNext()) {
+                    throw NoSuchElementException(
+                        "The array has no fields anymore. Array: $stringRepresentation"
+                    )
                 }
+                val end = string.indexOfUnbordered('"') { it == ',' }
+                val result = string
+                    .substring(
+                        string.indexOfFirst { it != ' ' },
+                        if (end == -1) string.length else end
+                    )
+                string = if (end == -1) "" else string.substring(end + 1)
+                return result
             }
+        }
 
     fun isValid(): Boolean = stringRepresentation.startsWith("[") && stringRepresentation.endsWith("]")
 

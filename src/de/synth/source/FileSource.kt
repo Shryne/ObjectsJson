@@ -15,14 +15,14 @@ class FileSource : Source {
     }
 
     override fun iterator(): Iterator<String> =
-            object : Iterator<String> {
-                override fun hasNext(): Boolean {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun next(): String {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
+        object : Iterator<String> {
+            override fun hasNext(): Boolean {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
+
+            override fun next(): String {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        }
 }
