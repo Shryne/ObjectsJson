@@ -25,8 +25,9 @@ class JsonBoolean(private val stringRepresentation: String) : JsonValue<Boolean>
             )
         }
 
-    override fun isValid(): Boolean =
-        stringRepresentation == TRUE_VALUE || stringRepresentation == FALSE_VALUE
+    override val isValid: Boolean
+        get() = stringRepresentation == TRUE_VALUE ||
+            stringRepresentation == FALSE_VALUE
 
     override fun toString() = "${javaClass.simpleName}($stringRepresentation)"
 }

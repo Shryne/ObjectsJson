@@ -14,8 +14,8 @@ class JsonString(private val stringRepresentation: String) : JsonValue<String> {
     /**
      * The string is valid, if it starts and ends with a " and contains something in between.
      */
-    override fun isValid(): Boolean =
-        stringRepresentation.startsWith("\"") && stringRepresentation.endsWith("\"")
+    override val isValid: Boolean
+        get() = stringRepresentation.startsWith("\"") && stringRepresentation.endsWith("\"")
 
     override fun toString() = "${javaClass.simpleName}($stringRepresentation)"
 }

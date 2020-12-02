@@ -13,8 +13,8 @@ class JsonInt(private val stringRepresentation: String) : JsonValue<Int> {
     override val value: Int
         get() = Integer.parseInt(stringRepresentation)
 
-    override fun isValid(): Boolean =
-        stringRepresentation.matches(
+    override val isValid: Boolean
+        get() = stringRepresentation.matches(
             Regex("[0-9]+")
         )
 

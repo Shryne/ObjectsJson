@@ -27,21 +27,21 @@ class JsonFloatTest {
     @Test
     fun intIsValid() {
         assertFalse(
-            JsonFloat("5").isValid()
+            JsonFloat("5").isValid
         )
     }
 
     @Test
     fun simpleFloatIsValid() {
         assertTrue(
-            JsonFloat("1.6").isValid()
+            JsonFloat("1.6").isValid
         )
     }
 
     @Test
     fun longFloatIsValid() {
         assertTrue(
-            JsonFloat("438.2309392").isValid()
+            JsonFloat("438.2309392").isValid
         )
     }
 
@@ -50,7 +50,7 @@ class JsonFloatTest {
         assertFalse(
             JsonFloat(
                 "0.043.42"
-            ).isValid()
+            ).isValid
         )
     }
 }

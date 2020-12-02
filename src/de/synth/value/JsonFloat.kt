@@ -14,8 +14,8 @@ class JsonFloat(private val stringRepresentation: String) : JsonValue<Float> {
                 java.lang.Float.parseFloat(stringRepresentation)
             }
 
-    override fun isValid(): Boolean =
-        stringRepresentation.matches(
+    override val isValid: Boolean
+        get() = stringRepresentation.matches(
             Regex("[0-9]+.[0-9]+")
         )
 

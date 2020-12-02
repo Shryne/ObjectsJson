@@ -11,7 +11,7 @@ interface JsonValue<T> {
     val value: T
 
     /**
-     * Checks whether the json value is valid (correct parsable).
+     * Whether the json value is valid (correctly parsable).
      */
-    fun isValid(): Boolean
+    val isValid: Boolean
 }

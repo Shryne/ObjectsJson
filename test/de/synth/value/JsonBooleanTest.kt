@@ -29,11 +29,11 @@ class JsonBooleanTest {
 
     @Test
     fun falseIsValid() {
-        assertFalse(JsonBoolean("TRUE").isValid())
+        assertFalse(JsonBoolean("TRUE").isValid)
     }
 
     @Test
     fun trueIsValid() {
-        assertTrue(JsonBoolean("true").isValid())
+        assertTrue(JsonBoolean("true").isValid)
     }
 }

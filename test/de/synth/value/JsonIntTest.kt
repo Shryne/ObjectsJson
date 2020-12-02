@@ -38,7 +38,7 @@ class JsonIntTest {
     fun allIsValid() {
         (0..9).forEach {
             assertTrue(
-                JsonInt(it.toString()).isValid(),
+                JsonInt(it.toString()).isValid,
                 "Failed on number $it"
             )
         }
@@ -50,7 +50,7 @@ class JsonIntTest {
             assertTrue(
                 JsonInt(
                     this.toString()
-                ).isValid()
+                ).isValid
             )
         }
     }
@@ -60,7 +60,7 @@ class JsonIntTest {
         assertFalse(
             JsonInt(
                 ""
-            ).isValid()
+            ).isValid
         )
     }
 
@@ -69,7 +69,7 @@ class JsonIntTest {
         assertFalse(
             JsonInt(
                 "3123d329"
-            ).isValid()
+            ).isValid
         )
     }
 
@@ -78,7 +78,7 @@ class JsonIntTest {
         assertFalse(
             JsonInt(
                 "3.2"
-            ).isValid()
+            ).isValid
         )
     }
 }
