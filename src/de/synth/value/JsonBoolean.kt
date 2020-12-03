@@ -6,31 +6,49 @@ package de.synth.value
  *
  * This class is immutable and thread-safe.
  */
-class JsonBoolean(private val stringRepresentation: String) : JsonValue<Boolean> {
+class JsonBoolean private constructor(
+    private val lazyValue: Lazy<Boolean>,
+    private val lazyJson: Lazy<String>,
+    private val lazyIsValid: Lazy<Boolean>
+) : JsonValue<Boolean> {
+    constructor(json: String) :
+        this(
+            lazy {
+                when (json) {
+                    TRUE_VALUE -> true
+                    FALSE_VALUE -> false
+                    else -> throw IllegalStateException(
+                        "Failed to parse the string to a boolean. " +
+                            "It should've been true or false, but is: " +
+                            json
+                    )
+                }
+            },
+            lazy { json },
+            lazy { json == TRUE_VALUE || json == FALSE_VALUE }
+        )
+
     private companion object {
         const val TRUE_VALUE = "true"
         const val FALSE_VALUE = "false"
     }
 
     /**
-     * @throws IllegalStateException if the boolean couldn't be parsed.
+     * The value as a Boolean.
+     * @throws IllegalStateException if the boolean couldn't be parsed
+     * ([isValid] == false).
      */
     override val value: Boolean
-        get() = when (stringRepresentation) {
-            TRUE_VALUE -> true
-            FALSE_VALUE -> false
-            else -> throw IllegalStateException(
-                "Failed to parse the string to a boolean. " +
-                    "It should've been true or false, but is: $stringRepresentation"
-            )
-        }
+        get() = lazyValue.value
 
     override val json: String
-        get() = TODO("Not yet implemented")
+        get() = lazyJson.value
 
+    /**
+     * Whether [json] is a correct json boolean.
+     */
     override val isValid: Boolean
-        get() = stringRepresentation == TRUE_VALUE ||
-            stringRepresentation == FALSE_VALUE
+        get() = lazyIsValid.value
 
-    override fun toString() = "${javaClass.simpleName}($stringRepresentation)"
+    override fun toString() = "${javaClass.simpleName}($json)"
 }
