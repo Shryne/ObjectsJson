@@ -6,12 +6,12 @@
 
     <groupId>de.synth.ObjectJson</groupId>
     <artifactId>ObjectsJson</artifactId>
-    <version>0.1</version>
+    <version>0.1.1</version>
 
     <properties>
         <!-- sonar cloud stuff -->
         <sonar.sources>src/main/kotlin</sonar.sources>
-        <sonar.tests>src/test</sonar.tests>
+        <sonar.tests>test</sonar.tests>
         <runSuite>**/*Suite.class</runSuite>
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
         <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
@@ -42,9 +42,6 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.6</version>
-                <configuration>
-                    <append>true</append>
-                </configuration>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -53,14 +50,8 @@
                         </goals>
                     </execution>
                     <execution>
-                        <id>prepare-agent-integration</id>
-                        <goals>
-                            <goal>prepare-agent-integration</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>jacoco-site</id>
-                        <phase>verify</phase>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
