@@ -18,6 +18,10 @@
         <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
         <sonar.language>kotlin</sonar.language>
 
+        <sonar.projectKey>Shryne_ObjectsJson</sonar.projectKey>
+        <sonar.organization>shryne</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
         <kotlin.version>1.4.20</kotlin.version>
 
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -37,7 +41,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.3</version>
+                <version>0.8.6</version>
                 <configuration>
                     <append>true</append>
                 </configuration>
