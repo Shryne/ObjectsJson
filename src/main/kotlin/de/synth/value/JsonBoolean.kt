@@ -1,5 +1,7 @@
 package de.synth.value
 
+import kotlin.reflect.jvm.internal.impl.resolve.scopes.receivers.ThisClassReceiver
+
 /**
  * A boolean coming from or going to json. This means, it can represent itself
  * as a json and as a Boolean.
@@ -73,7 +75,12 @@ class JsonBoolean private constructor(
     }
 
     override fun equals(other: Any?): Boolean {
-        TODO()
+        if (other === this) return true
+        else if (other is JsonBoolean) {
+            return if (!other.isValid && !isValid) true
+            else other.isValid && isValid && other.value == value
+        }
+        return false
     }
 
     override fun toString() = "${javaClass.simpleName}(${lazyJson.value})"

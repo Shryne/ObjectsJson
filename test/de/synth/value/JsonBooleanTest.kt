@@ -3,6 +3,7 @@ package de.synth.value
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
 
 // TODO: Switch to junit5 or something from kotlin
@@ -44,6 +45,30 @@ class JsonBooleanTest {
 
     @Test
     fun isNotValid() = assertFalse(JsonBoolean("TRUE").isValid)
+
+    /*
+    equals
+     */
+    @Test
+    fun sameEquals() {
+        JsonBoolean(false).also { assertEquals(it, it) }
+    }
+
+    @Test
+    fun bothValueEqual() = assertEquals(JsonBoolean(true), JsonBoolean(true))
+
+    @Test
+    fun valueJsonEqual() = assertEquals(JsonBoolean("true"), JsonBoolean(true))
+
+    @Test
+    fun bothValueUnequal() = assertNotEquals(
+        JsonBoolean(true), JsonBoolean(false)
+    )
+
+    @Test
+    fun valueJsonUnequal() = assertNotEquals(
+        JsonBoolean(false), JsonBoolean("true")
+    )
 
     /*
     toString:
