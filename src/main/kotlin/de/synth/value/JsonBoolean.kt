@@ -1,7 +1,5 @@
 package de.synth.value
 
-import kotlin.reflect.jvm.internal.impl.resolve.scopes.receivers.ThisClassReceiver
-
 /**
  * A boolean coming from or going to json. This means, it can represent itself
  * as a json and as a Boolean.
