@@ -1,4 +1,5 @@
 # ObjectsJson
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Shryne_ObjectsJson&metric=coverage)](https://sonarcloud.io/dashboard?id=Shryne_ObjectsJson) [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Shryne_ObjectsJson&metric=bugs)](https://sonarcloud.io/dashboard?id=Shryne_ObjectsJson) [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=Shryne_ObjectsJson&metric=code_smells)](https://sonarcloud.io/dashboard?id=Shryne_ObjectsJson) [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=Shryne_ObjectsJson&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=Shryne_ObjectsJson)  
 This library offers a more object oriented way to parse json data.
 
 # Characteristics
@@ -8,12 +9,9 @@ This library offers a more object oriented way to parse json data.
   * Easy expandable
   * No unnecessary exception throwing
   * **No object mapping**  
-    A json object is not comperable with a java object, because it is just 
-    a container of data without any behaviour. A java object on the other
-     side should only expose behaviour. Because of this conceptual difference
-      any direct mapping would violate the object oriented design.
   * Supports conversion from and to a json file or anything else
   * Own json sources or targets can be defined
+  * Uses mutation testing  
 
 # Examples
 ## Creating json
@@ -58,5 +56,4 @@ JsonObject(
 ```
 Other sources are also possible. The JsonObject can be constructed 
 by using a string, a file or other json objects. It just needs a class 
-that implements the Source interface. Because of this, new sources can be 
-specified.
+that implements the Source interface.
