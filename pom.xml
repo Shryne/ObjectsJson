@@ -6,7 +6,7 @@
 
     <groupId>de.synth.ObjectJson</groupId>
     <artifactId>ObjectsJson</artifactId>
-    <version>0.3.1</version>
+    <version>0.4</version>
 
     <properties>
         <!-- sonar cloud stuff -->

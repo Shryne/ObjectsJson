@@ -1,12 +1,19 @@
 package de.synth.value
 
+// TODO: Constructors should be able to throw an exception if possible
 /**
  * A boolean coming from or going to json. This means, it can represent itself
  * as a json and as a Boolean.
  *
+ * A JsonBoolean is equal to another JsonBoolean if it is equal by [value]. If
+ * [isValid] is false then they are equal by [isValid].
+ *
+ * Note that the hashCode of this class is based on [value] which only works
+ * if the object is valid according to [isValid]. This means that putting this
+ * object in a [Map] will trigger parsing and may lead to an exception.
+ *
  * This class is immutable and thread-safe.
  */
-// TODO: Constructors should be able to throw an exception if possible
 // TODO: The lazy stuff should probably not be defined in this class
 class JsonBoolean private constructor(
     private val lazyValue: Lazy<Boolean>,
@@ -68,9 +75,7 @@ class JsonBoolean private constructor(
     override val isValid: Boolean
         get() = lazyIsValid.value
 
-    override fun hashCode(): Int {
-        TODO()
-    }
+    override fun hashCode() = value.hashCode()
 
     override fun equals(other: Any?): Boolean {
         if (other === this) return true
