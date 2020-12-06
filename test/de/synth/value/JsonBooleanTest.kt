@@ -1,5 +1,7 @@
 package de.synth.value
 
+import de.synth.source.JsonSource
+import de.synth.source.ValueSource
 import nl.jqno.equalsverifier.EqualsVerifier
 import nl.jqno.equalsverifier.Warning
 import org.junit.Test
@@ -10,6 +12,19 @@ import kotlin.test.assertTrue
 
 // TODO: Switch to junit5 or something from kotlin
 class JsonBooleanTest {
+    /*
+    constructor:
+     */
+    @Test(expected = IllegalArgumentException::class)
+    fun invalidStringThrows() {
+        JsonBoolean("FALSE")
+    }
+
+    @Test
+    fun invalidLazyDoesntFail() {
+        JsonBoolean(JsonSource { "FALSE" })
+    }
+
     /*
     value:
      */
@@ -23,6 +38,16 @@ class JsonBooleanTest {
     fun failValue() {
         JsonBoolean("FALSE").value
     }
+
+    @Test
+    fun sourceChangesValue() {
+        var source = "true"
+        val bool = JsonBoolean(JsonSource { source })
+        assertEquals(true, bool.value)
+        source = "false"
+        assertEquals(false, bool.value)
+    }
+
     /*
     json:
      */
@@ -34,19 +59,44 @@ class JsonBooleanTest {
         JsonBoolean("FALSE").json
     }
 
+    @Test
+    fun valueChangesValue() {
+        var source = true
+        val bool = JsonBoolean(ValueSource { source })
+        assertEquals("true", bool.json)
+        source = false
+        assertEquals("false", bool.json)
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun invalidJsonSourceThrows() {
+        JsonBoolean(JsonSource { "damio" })
+    }
+
     /*
     isValid:
      */
     @Test
-    fun falseIsValid() = assertFalse(JsonBoolean("TRUE").isValid)
+    fun valueIsValid() = assertTrue(JsonBoolean(false).isValid)
 
 
     @Test
-    fun trueIsValid() = assertTrue(JsonBoolean("true").isValid)
+    fun jsonIsValid() = assertTrue(JsonBoolean("true").isValid)
 
 
     @Test
-    fun isNotValid() = assertFalse(JsonBoolean("TRUE").isValid)
+    fun isNotValid() = assertFalse(
+        JsonBoolean(JsonSource { "TRUE" }).isValid
+    )
+
+    @Test
+    fun notValidToValid() {
+        var source = "true"
+        val bool = JsonBoolean(JsonSource { source })
+        assertTrue(bool.isValid)
+        source = "tru"
+        assertFalse(bool.isValid)
+    }
 
     /*
     equals:
@@ -99,9 +149,8 @@ class JsonBooleanTest {
     )
 
     @Test
-    fun inValidToString() {
-        "dmienf".also {
-            assertEquals("JsonBoolean($it)", JsonBoolean(it).toString())
-        }
+    fun invalidToString() {
+        val value: () -> String = { "dmienf" }
+        assertEquals("JsonBoolean(${value()})", JsonBoolean(value).toString())
     }
 }

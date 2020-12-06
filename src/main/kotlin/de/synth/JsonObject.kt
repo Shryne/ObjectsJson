@@ -1,7 +1,7 @@
 package de.synth
 
-import de.synth.source.ObjectSource
-import de.synth.source.Source
+import de.synth.old_source.ObjectSource
+import de.synth.old_source.Source
 import de.synth.target.Target
 import de.synth.value.JsonValue
 

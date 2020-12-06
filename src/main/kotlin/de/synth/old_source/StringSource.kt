@@ -1,11 +1,11 @@
-package de.synth.source
+package de.synth.old_source
 
 /**
- * A file as a source of json objects.
+ * A string as a source of json objects.
  *
  * This class is immutable and thread-safe.
  */
-class FileSource : Source {
+class StringSource : Source {
     override fun get(key: String): String {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
