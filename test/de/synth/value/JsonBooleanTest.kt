@@ -1,5 +1,7 @@
 package de.synth.value
 
+import nl.jqno.equalsverifier.EqualsVerifier
+import nl.jqno.equalsverifier.Warning
 import org.junit.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -47,7 +49,7 @@ class JsonBooleanTest {
     fun isNotValid() = assertFalse(JsonBoolean("TRUE").isValid)
 
     /*
-    equals
+    equals:
      */
     @Test
     fun sameEquals() {
@@ -69,6 +71,24 @@ class JsonBooleanTest {
     fun valueJsonUnequal() = assertNotEquals(
         JsonBoolean(false), JsonBoolean("true")
     )
+
+    @Test
+    fun differentObjectUnequal() = assertNotEquals(
+        true as Any, JsonBoolean(true) as Any
+    )
+
+    /*
+    hashCode:
+     */
+
+    @Test
+    fun equalsHashCodeVerified() = EqualsVerifier
+        .simple()
+        .withGenericPrefabValues(Lazy::class.java) { a -> lazy { a }}
+        .forClass(JsonBoolean::class.java)
+        .withIgnoredFields("lazyJson")
+        .suppress(Warning.NULL_FIELDS)
+        .verify()
 
     /*
     toString:

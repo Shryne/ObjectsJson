@@ -6,7 +6,7 @@
 
     <groupId>de.synth.ObjectJson</groupId>
     <artifactId>ObjectsJson</artifactId>
-    <version>0.4</version>
+    <version>0.5</version>
 
     <properties>
         <!-- sonar cloud stuff -->
@@ -48,6 +48,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>nl.jqno.equalsverifier</groupId>
+            <artifactId>equalsverifier</artifactId>
+            <version>3.5</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

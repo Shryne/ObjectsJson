@@ -8,10 +8,6 @@ package de.synth.value
  * A JsonBoolean is equal to another JsonBoolean if it is equal by [value]. If
  * [isValid] is false then they are equal by [isValid].
  *
- * Note that the hashCode of this class is based on [value] which only works
- * if the object is valid according to [isValid]. This means that putting this
- * object in a [Map] will trigger parsing and may lead to an exception.
- *
  * This class is immutable and thread-safe.
  */
 // TODO: The lazy stuff should probably not be defined in this class
@@ -75,7 +71,7 @@ class JsonBoolean private constructor(
     override val isValid: Boolean
         get() = lazyIsValid.value
 
-    override fun hashCode() = value.hashCode()
+    override fun hashCode() = if (isValid) value.hashCode() else 1
 
     override fun equals(other: Any?): Boolean {
         if (other === this) return true
