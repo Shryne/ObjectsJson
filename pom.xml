@@ -6,7 +6,7 @@
 
     <groupId>de.synth.ObjectJson</groupId>
     <artifactId>ObjectsJson</artifactId>
-    <version>0.5</version>
+    <version>0.6</version>
 
     <properties>
         <!-- sonar cloud stuff -->
@@ -103,6 +103,11 @@
                 <configuration>
                     <jvmTarget>1.8</jvmTarget>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.5.2</version>
             </plugin>
         </plugins>
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
