@@ -4,7 +4,6 @@ This library offers a more object oriented way to parse json data.
 
 # Characteristics
   * Declaritive design
-  * Everything is immutable
   * Everything uses interfaces
   * Easy expandable
   * No unnecessary exception throwing
