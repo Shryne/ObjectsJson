@@ -22,6 +22,7 @@ import de.synth.source.ValueSource
  */
 // TODO: At JMH unit tests
 // TODO: The lazy stuff should probably not be defined in this class
+// TODO: Use detekt
 class JsonBoolean private constructor(
     private val lazyValue: Lazy<Boolean>,
     private val lazyJson: Lazy<String>,
@@ -95,21 +96,6 @@ class JsonBoolean private constructor(
      */
     constructor(jsonSource: JsonSource) :
         this(
-            jsonSource,
-            lazy {
-                jsonSource.get().run {
-                    this == TRUE_VALUE || this == FALSE_VALUE
-                }
-            }
-        )
-
-    /**
-     * This constructor is necessary to use the isValid check. Otherwise kotlin
-     * would complaint that the value can't be used before the object is
-     * constructed.
-     */
-    private constructor(jsonSource: JsonSource, lazyIsValid: Lazy<Boolean>) :
-        this(
             lazy {
                 when (val value = jsonSource.get()) {
                     TRUE_VALUE -> true
@@ -120,16 +106,12 @@ class JsonBoolean private constructor(
                     )
                 }
             },
-            // TODO: What happens, if the value changes when lazyIsValid is invoked and then jsonSource becomes invalid?
+            lazy { jsonSource.get() },
             lazy {
-                if (lazyIsValid.value) jsonSource.get()
-                else throw IllegalArgumentException(
-                    "Failed to parse the string to a boolean. " +
-                        "It should've been true or false, but is: " +
-                        jsonSource.get()
-                )
-            },
-            lazyIsValid
+                jsonSource.get().run {
+                    this == TRUE_VALUE || this == FALSE_VALUE
+                }
+            }
         )
 
     /**

@@ -70,7 +70,7 @@ class JsonBooleanTest {
 
     @Test(expected = IllegalArgumentException::class)
     fun invalidJsonSourceThrows() {
-        JsonBoolean(JsonSource { "damio" })
+        JsonBoolean(JsonSource { "damio" }).json
     }
 
     /*
