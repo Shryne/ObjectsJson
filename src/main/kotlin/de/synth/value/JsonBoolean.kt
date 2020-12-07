@@ -115,11 +115,7 @@ class JsonBoolean private constructor(
             }
         )
 
-    /**
-     * The value as a Boolean.
-     * @throws IllegalArgumentException if the boolean couldn't be parsed
-     * ([isValid] == false).
-     */
+
     override val value: Boolean
         get() = lazyValue.get()
 
@@ -132,9 +128,6 @@ class JsonBoolean private constructor(
                 )
             }
 
-    /**
-     * Whether [json] is a correct json boolean.
-     */
     override val isValid: Boolean
         get() = lazyIsValid.get()
 
