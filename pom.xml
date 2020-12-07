@@ -6,7 +6,7 @@
 
     <groupId>de.synth.ObjectJson</groupId>
     <artifactId>ObjectsJson</artifactId>
-    <version>0.3.1</version>
+    <version>0.7.3</version>
 
     <properties>
         <!-- sonar cloud stuff -->
@@ -48,6 +48,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>nl.jqno.equalsverifier</groupId>
+            <artifactId>equalsverifier</artifactId>
+            <version>3.5</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -97,6 +103,11 @@
                 <configuration>
                     <jvmTarget>1.8</jvmTarget>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.5.2</version>
             </plugin>
         </plugins>
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>

@@ -1,4 +1,4 @@
-package de.synth.source
+package de.synth.old_source
 
 /**
  * The interface for a json source. It can be a file, real objects or anything else.

@@ -6,12 +6,14 @@ package de.synth.value
  */
 interface JsonValue<T> {
     /**
-     * The object of this json value.
+     * The object of this json value. This method will throw an exception if
+     * the json isn't parsable. Use [isValid] beforehand to check this.
      */
     val value: T
 
     /**
-     * The json version of the value.
+     * The json version of the value. This method will throw an exception if
+     * the json isn't parsable. Use [isValid] beforehand to check this.
      */
     val json: String
 
