@@ -5,6 +5,7 @@ import de.synth.source.ValueSource
 import nl.jqno.equalsverifier.EqualsVerifier
 import nl.jqno.equalsverifier.Warning
 import org.junit.Test
+import java.util.function.Supplier
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNotEquals
@@ -134,7 +135,9 @@ class JsonBooleanTest {
     @Test
     fun equalsHashCodeVerified() = EqualsVerifier
         .simple()
-        .withGenericPrefabValues(Lazy::class.java) { a -> lazy { a }}
+        .withGenericPrefabValues(ValueSource::class.java) {
+            a -> ValueSource { a }
+        }
         .forClass(JsonBoolean::class.java)
         .withIgnoredFields("lazyJson")
         .suppress(Warning.NULL_FIELDS)

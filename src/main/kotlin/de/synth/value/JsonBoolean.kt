@@ -2,6 +2,7 @@ package de.synth.value
 
 import de.synth.source.JsonSource
 import de.synth.source.ValueSource
+import java.util.function.Supplier
 
 // TODO: Constructors should be able to throw an exception if possible
 /**
@@ -24,9 +25,9 @@ import de.synth.source.ValueSource
 // TODO: The lazy stuff should probably not be defined in this class
 // TODO: Use detekt
 class JsonBoolean private constructor(
-    private val lazyValue: Lazy<Boolean>,
-    private val lazyJson: Lazy<String>,
-    private val lazyIsValid: Lazy<Boolean>
+    private val lazyValue: ValueSource<Boolean>,
+    private val lazyJson: JsonSource,
+    private val lazyIsValid: Supplier<Boolean>
 ) : JsonValue<Boolean> {
     private companion object {
         const val TRUE_VALUE = "true"
@@ -38,9 +39,9 @@ class JsonBoolean private constructor(
      */
     constructor(value: Boolean) :
         this(
-            lazyOf(value),
-            lazyOf(value.toString()),
-            lazyOf(true)
+            ValueSource { value },
+            JsonSource(value::toString),
+            { true }
         )
 
     /**
@@ -75,9 +76,9 @@ class JsonBoolean private constructor(
      */
     constructor(valueSource: ValueSource<Boolean>) :
         this(
-            lazy(valueSource::get),
-            lazy(valueSource::get::toString),
-            lazyOf(true)
+            valueSource,
+            JsonSource { valueSource.get().toString() },
+            { true }
         )
 
     /**
@@ -96,7 +97,7 @@ class JsonBoolean private constructor(
      */
     constructor(jsonSource: JsonSource) :
         this(
-            lazy {
+            ValueSource {
                 when (val value = jsonSource.get()) {
                     TRUE_VALUE -> true
                     FALSE_VALUE -> false
@@ -106,8 +107,8 @@ class JsonBoolean private constructor(
                     )
                 }
             },
-            lazy { jsonSource.get() },
-            lazy {
+            jsonSource,
+            {
                 jsonSource.get().run {
                     this == TRUE_VALUE || this == FALSE_VALUE
                 }
@@ -120,14 +121,14 @@ class JsonBoolean private constructor(
      * ([isValid] == false).
      */
     override val value: Boolean
-        get() = lazyValue.value
+        get() = lazyValue.get()
 
     override val json: String
         get() =
-            if (lazyIsValid.value) lazyJson.value
+            if (lazyIsValid.get()) lazyJson.get()
             else {
                 throw IllegalArgumentException(
-                    "The given json (${lazyJson.value}) is invalid."
+                    "The given json (${lazyJson.get()}) is invalid."
                 )
             }
 
@@ -135,7 +136,7 @@ class JsonBoolean private constructor(
      * Whether [json] is a correct json boolean.
      */
     override val isValid: Boolean
-        get() = lazyIsValid.value
+        get() = lazyIsValid.get()
 
     override fun hashCode() = if (isValid) value.hashCode() else 1
 
@@ -148,5 +149,5 @@ class JsonBoolean private constructor(
         return false
     }
 
-    override fun toString() = "${javaClass.simpleName}(${lazyJson.value})"
+    override fun toString() = "${javaClass.simpleName}(${lazyJson.get()})"
 }
