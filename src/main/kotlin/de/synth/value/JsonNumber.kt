@@ -5,7 +5,8 @@ package de.synth.value
  *
  * This class is immutable and thread-safe.
  */
-class JsonFloat(private val stringRepresentation: String) : JsonValue<Float> {
+// TODO: How long is an int/float allowed to be? What about leading zeros?
+class JsonNumber(private val stringRepresentation: String) : JsonValue<Float> {
     override val value: Float
         get() =
             if (stringRepresentation.matches(Regex("[0-9]"))) {

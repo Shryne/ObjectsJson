@@ -5,13 +5,61 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
-class JsonIntTest {
+class JsonNumberTest {
+    @Test
+    fun someNumberAsObject() {
+        assertEquals(
+            0.0.toFloat(),
+            JsonNumber("0.0").value
+        )
+    }
+
+    @Test(expected = NumberFormatException::class)
+    fun intFailAsObject() {
+        JsonNumber("1").value
+    }
+
+    @Test(expected = NumberFormatException::class)
+    fun characterFailAsObject() {
+        JsonNumber("sda").value
+    }
+
+    @Test
+    fun intIsValid() {
+        assertFalse(
+            JsonNumber("5").isValid
+        )
+    }
+
+    @Test
+    fun simpleFloatIsValid() {
+        assertTrue(
+            JsonNumber("1.6").isValid
+        )
+    }
+
+    @Test
+    fun longFloatIsValid() {
+        assertTrue(
+            JsonNumber("438.2309392").isValid
+        )
+    }
+
+    @Test
+    fun multiplePointsIsValid() {
+        assertFalse(
+            JsonNumber(
+                "0.043.42"
+            ).isValid
+        )
+    }
+
     @Test
     fun allNumberAsObject() {
         (0..9).forEach {
             assertEquals(
                 it,
-                JsonInt(it.toString()).value,
+                JsonNumber(it.toString()).value,
                 "Failed on number $it"
             )
         }
@@ -19,7 +67,7 @@ class JsonIntTest {
 
     @Test(expected = NumberFormatException::class)
     fun failAsObject() {
-        JsonInt("ds").value
+        JsonNumber("ds").value
     }
 
     @Test
@@ -27,7 +75,7 @@ class JsonIntTest {
         13302.apply {
             assertEquals(
                 this,
-                JsonInt(
+                JsonNumber(
                     this.toString()
                 ).value
             )
@@ -38,7 +86,7 @@ class JsonIntTest {
     fun allIsValid() {
         (0..9).forEach {
             assertTrue(
-                JsonInt(it.toString()).isValid,
+                JsonNumber(it.toString()).isValid,
                 "Failed on number $it"
             )
         }
@@ -48,7 +96,7 @@ class JsonIntTest {
     fun bigNumberIsValid() {
         23843.apply {
             assertTrue(
-                JsonInt(
+                JsonNumber(
                     this.toString()
                 ).isValid
             )
@@ -58,7 +106,7 @@ class JsonIntTest {
     @Test
     fun emptyNotIsValid() {
         assertFalse(
-            JsonInt(
+            JsonNumber(
                 ""
             ).isValid
         )
@@ -67,7 +115,7 @@ class JsonIntTest {
     @Test
     fun middleCharacterNotIsValid() {
         assertFalse(
-            JsonInt(
+            JsonNumber(
                 "3123d329"
             ).isValid
         )
@@ -76,7 +124,7 @@ class JsonIntTest {
     @Test
     fun floatNotIsValid() {
         assertFalse(
-            JsonInt(
+            JsonNumber(
                 "3.2"
             ).isValid
         )
