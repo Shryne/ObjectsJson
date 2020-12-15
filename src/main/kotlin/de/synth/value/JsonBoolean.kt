@@ -116,8 +116,7 @@ class JsonBoolean private constructor(
         )
 
 
-    override val value: Boolean
-        get() = lazyValue.get()
+    override val value: Boolean get() = lazyValue.get()
 
     override val json: String
         get() =
@@ -128,8 +127,7 @@ class JsonBoolean private constructor(
                 )
             }
 
-    override val isValid: Boolean
-        get() = lazyIsValid.get()
+    override val isValid: Boolean get() = lazyIsValid.get()
 
     override fun hashCode() = if (isValid) value.hashCode() else 1
 
