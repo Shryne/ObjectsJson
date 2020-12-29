@@ -15,7 +15,14 @@ class JsonNumber private constructor(
     private val lazyJson: JsonSource,
     private val lazyIsValid: Supplier<Boolean>
 ) : JsonValue<Number> {
-    constructor(value: String) :
+    constructor(value: Number) :
+        this(
+            ValueSource { value },
+            JsonSource { "$value" },
+            { true }
+        )
+
+    constructor(json: String) :
         this(
             TODO("Not yet implemented"),
             TODO("Not yet implemented"),
